@@ -12,9 +12,10 @@ test('工作台展示三栏及模拟数据提示', async ({ page }) => {
 test('证据查询和来源详情可用', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('textbox', { name: '搜索证据' }).fill('E-017');
-  await expect(page.getByRole('button', { name: /E-017/ })).toBeVisible();
-  await expect(page.getByRole('button', { name: /E-012/ })).toHaveCount(0);
-  await page.getByRole('button', { name: /E-017/ }).click();
+  const evidenceList = page.getByRole('region', { name: '证据资料列表' });
+  await expect(evidenceList.getByRole('button', { name: /E-017/ })).toBeVisible();
+  await expect(evidenceList.getByRole('button', { name: /E-012/ })).toHaveCount(0);
+  await evidenceList.getByRole('button', { name: /E-017/ }).click();
   await expect(page.getByRole('dialog', { name: '证据来源' })).toBeVisible();
   await expect(page.getByText('访谈记录 §05')).toBeVisible();
 });

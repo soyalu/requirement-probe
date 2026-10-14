@@ -17,7 +17,7 @@ test('证据查询和来源详情可用', async ({ page }) => {
   await expect(evidenceList.getByRole('button', { name: /E-012/ })).toHaveCount(0);
   await evidenceList.getByRole('button', { name: /E-017/ }).click();
   await expect(page.getByRole('dialog', { name: '证据来源' })).toBeVisible();
-  await expect(page.getByText('访谈记录 §05')).toBeVisible();
+  await expect(page.getByRole('dialog', { name: '证据来源' }).getByText('访谈记录 §05')).toBeVisible();
 });
 
 test('假设切换、核验任务创建与状态更新', async ({ page }) => {

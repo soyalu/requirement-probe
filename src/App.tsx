@@ -125,7 +125,7 @@ export default function App() {
               <div className="panel-head"><h2><span className="accent" />原始资料与证据</h2><small>可追溯的事实来源</small></div>
               <div className="segment">{filterOptions.map(option => <button key={option.key} className={filter === option.key ? 'selected' : ''} onClick={() => setFilter(option.key)}>{option.title}</button>)}</div>
               <label className="search-field"><Search size={15} /><input aria-label="搜索证据" placeholder="搜索证据编号、内容或来源" value={query} onChange={event => setQuery(event.target.value)} /></label>
-              <div className="panel-scroll evidence-list">
+              <div className="panel-scroll evidence-list" role="region" aria-label="证据资料列表">
                 {visibleEvidence.map(item => <button key={item.id} className={'evidence-card' + (selectedEvidence === item.id ? ' selected' : '')} onClick={() => inspectEvidence(item.id)}>
                   <span className="evidence-card-top"><b>{item.id}</b><span className={'kind ' + item.kind}>{kindLabel[item.kind]}</span><span className={'status ' + (item.reviewed ? 'verified' : 'pending')}>{item.reviewed ? '样例已核对' : '待核验'}</span></span>
                   <span className="evidence-copy">{item.text}</span>
